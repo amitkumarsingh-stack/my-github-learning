@@ -1,2 +1,19 @@
+# This is the name of the workflow
 name: my-first-workflow
-on
+
+# The trigger for the workflow. "workflow_dispatch" allows manual triggering from the GitHub UI
+on: 
+    workflow_dispatch
+
+jobs:
+    # Defining a job named 'print-message'
+    print-message:
+        # The job will run on the latest available Ubuntu runner
+        runs-on: ubuntu-latest
+        steps:
+            # A step that will print a message
+            - name: Print message
+              run: 
+                # Printing the messages to the console
+                echo "My first workflow"
+                echo "New line"
