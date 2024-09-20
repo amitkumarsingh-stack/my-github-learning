@@ -35,3 +35,7 @@ on:
     branches:
       - main
 ```
+# Parallel Execution vs Sequentially Execution
+* By default, jobs in a GitHub Actions workflow run in parallel unless you explicitly define dependencies between them.
+* If there are no dependencies between the jobs, they execute in parallel.
+* To run jobs sequentially, you can use the ***needs*** keyword to define dependencies between jobs. This ensures that one job waits for another to finish before it starts.
