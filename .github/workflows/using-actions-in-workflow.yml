@@ -1,0 +1,16 @@
+name: Using Actions in Workflow  # Name of the workflow, displayed in the GitHub Actions UI
+
+on: workflow_dispatch  # This workflow is triggered manually via the GitHub UI
+
+jobs:  # Define the jobs to be executed in this workflow
+  build:  # Name of the job
+    runs-on: ubuntu-latest  # Specify the environment the job will run in
+    
+    steps:  # List of steps to execute within the job
+      - name: Checkout code  # Step 1: Checkout the code from the repository
+        uses: actions/checkout@v4  # Use the official checkout action to pull the repository code
+        
+      - name: Setup Nodejs Setup  # Step 2: Set up Node.js environment
+        uses: actions/setup-node@v4  # Use the official setup-node action to install Node.js
+        with:  # Inputs for the setup-node action
+          node-version: '14'  # Specify the version of Node.js to install
