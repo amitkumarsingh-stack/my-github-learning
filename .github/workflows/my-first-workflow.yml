@@ -2,8 +2,9 @@
 name: my-first-workflow
 
 # The trigger for the workflow. "workflow_dispatch" allows manual triggering from the GitHub UI
-on: 
-    workflow_dispatch
+on: workflow_dispatch
+
+  
 
 jobs:
     # Defining a job named 'print-message'
