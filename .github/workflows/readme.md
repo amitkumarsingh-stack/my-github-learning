@@ -1,5 +1,5 @@
 
-# Workflow Triggres or Workflow Syntax
+# Workflow Triggres or Workflow Syntax (my-first-workflow)
 
 To automatically trigger a workflow, use ***on*** to define which events can cause the workflow to run.
 
