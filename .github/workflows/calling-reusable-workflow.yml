@@ -10,4 +10,4 @@ jobs:
       node-version: '14'  # Pass inputs to the reusable workflow
       environment: 'production'
     secrets:
-      TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Pass secrets to the reusable workflow
+      ACCESS_KEY_ID: ${{ secrets.GITHUB_TOKEN }}  # Pass secrets to the reusable workflow
