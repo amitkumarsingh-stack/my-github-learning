@@ -7,5 +7,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run if both the consitions are true
-        if: ${{ github.ref == 'refs/heads/main' && github.actor == 'amit' }}
+        if: ${{ github.ref == 'refs/heads/main' }}
         run: echo "Both the branch is main and actor is Amit"
