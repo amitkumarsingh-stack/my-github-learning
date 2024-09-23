@@ -1,6 +1,6 @@
 name: Predefined GitHub Env Variables
 
-on: push
+on: workflow_dispatch
 
 jobs:
   print-vars:
