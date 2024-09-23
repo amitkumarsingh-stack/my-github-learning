@@ -5,7 +5,7 @@ on: workflow_dispatch
 
 jobs:
   use-reusable-build:
-    uses: /.github/workflows/reusable.yml  # Reference reusable workflow
+    uses: ./.github/workflows/reusable.yml  # Reference reusable workflow
     with:
       node-version: '14'  # Pass inputs to the reusable workflow
       environment: 'production'
