@@ -9,16 +9,27 @@ jobs:
         steps:
             - name: Build  # Name of the step that builds the project
               run: echo "Building..."  # This step just echoes a build message
-              
+
+# Success(). the Deploy step will only run if all previous steps succeed.              
     Deploy:  # Second job named "Deploy"
         runs-on: ubuntu-latest  # The job will also run on an Ubuntu virtual machine
         steps:
             - name: Deploy  # Name of the deployment step
               if: ${{ success() }}  # Step runs only if the "Build" job or previous steps succeeded
               run: echo "Last job was success"  # This step echoes a success message if the previous steps passed
+
+# failure(). The Notify on failure step will run only if any step fails.
     Notify_if_failed:
         runs-on: ubuntu-latest
         steps:
             - name: Notify on failure
               if: ${{ failure() }}  # Step will only run if the "Deploy" or any other step fails
               run: echo "Build failed. Sending notification..."
+
+# always(). The Always run cleanup step will execute regardless of the outcome of the step.
+    Always_run_cleanup:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Always run cleanup
+              if: ${{ always() }}   # # The 'Always run cleanup' step will execute regardless of the outcome of the previous step
+              run: echo "Cleaning up resources..."
