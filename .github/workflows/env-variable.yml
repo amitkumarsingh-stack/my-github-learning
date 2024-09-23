@@ -22,3 +22,9 @@ jobs:
         steps:
             - name: Print Envrionment
               run: echo "Deploying code to ${{ env.DEPLOY_ENV_JOB }}"
+
+# Step-Level Environment Variables
+            - name: Set Step-Specific Env
+              env:
+                MY_VAR: hello  # Environment variable specific to this step
+              run: echo "The value of MY_VAR is ${{ env.MY_VAR}}"
