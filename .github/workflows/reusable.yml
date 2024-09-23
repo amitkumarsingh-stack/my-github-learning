@@ -1,0 +1,36 @@
+# This file is located at: .github/workflows/build.yml
+name: Reusable Build Workflow
+
+on:
+  workflow_call:
+    inputs:  # Define inputs for customization
+      node-version:
+        type: string
+        required: true
+      environment:
+        type: string
+        required: true
+    secrets:  # Define secrets that can be passed in from the calling workflow
+      ACCESS_KEY_ID:
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ inputs['node-version'] }}  # Use input parameter
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Deploy to environment
+        run: echo "Deploying to ${{ inputs['environment'] }} using token ${{ secrets.ACCESS_KEY_ID }}"
