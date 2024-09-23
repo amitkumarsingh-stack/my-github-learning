@@ -1,5 +1,5 @@
-name: Global Environment Variables  # You can set environment variables for all jobs in the workflow using the env key at the workflow level.
-
+name: Environment Variables  # You can set environment variables for all jobs in the workflow using the env key at the workflow level.
+# Global Environment Variables
 on: workflow_dispatch
 env:
     DEPLOY_ENV: production
@@ -13,3 +13,12 @@ jobs:
 
             - name: Print Database URL
               run: echo "${{ env.DATABASE_URL}}"
+
+# Job-Level Environment Variables
+    job_Level_Env_Var:
+        runs-on: ubuntu-latest
+        env:
+            DEPLOY_ENV_JOB: Staging
+        steps:
+            - name: Print Envrionment
+              run: echo "Deploying code to ${{ env.DEPLOY_ENV_JOB }}"
