@@ -1,0 +1,13 @@
+name: Predefined GitHub Env Variables
+
+on: push
+
+jobs:
+  print-vars:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print GitHub Variables
+        run: |
+          echo "Commit SHA: $GITHUB_SHA"
+          echo "Branch Ref: $GITHUB_REF"
+          echo "Actor: $GITHUB_ACTOR"
