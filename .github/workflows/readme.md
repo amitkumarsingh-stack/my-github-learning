@@ -39,3 +39,21 @@ on:
 * By default, jobs in a GitHub Actions workflow run in parallel unless you explicitly define dependencies between them.
 * If there are no dependencies between the jobs, they execute in parallel.
 * To run jobs sequentially, you can use the ***needs*** keyword to define dependencies between jobs. This ensures that one job waits for another to finish before it starts.
+
+# GitHub Artifacts
+#### What are Artifacts?
+Artifacts are files or data generated during the execution of a workflow job in GitHub Actions. These files are stored and made available for download after the job completes. Artifacts are especially useful when you want to:
+
+* Share files between jobs in a workflow.
+* Persist build outputs, logs, test results, or reports for later use or download.
+* Debug issues by storing logs or diagnostic files.
+
+#### Uploading Artifacts
+Artifacts are uploaded using the actions/upload-artifact action. You can upload individual files or entire directories as artifacts.
+
+# Job Outputs
+#### What are Job Outputs?
+Job outputs allow you to pass data (such as strings, version numbers, environment details) between jobs in the same workflow. Outputs are defined in one job and accessed by subsequent jobs. Job outputs are particularly useful when you need to:
+
+* Share results or information between jobs (e.g., a version number generated in a build job and used in a deployment job).
+* Control the execution flow of jobs based on previous job results (e.g., conditional deployments).
