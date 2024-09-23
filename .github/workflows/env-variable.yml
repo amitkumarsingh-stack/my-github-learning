@@ -12,4 +12,4 @@ jobs:
               run: echo "${{ env.DEPLOY_ENV }}"
 
             - name: Print Database URL
-              run: echo "Database URL: ${{ env.DATABASE_URL}}"
+              run: echo "${{ env.DATABASE_URL}}"
