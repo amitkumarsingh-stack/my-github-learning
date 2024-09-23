@@ -3,9 +3,9 @@ name: calling-reusable-template
 
 on: workflow_dispatch
 
+# In another repository
 jobs:
-  call-reusable-ci:
-    uses: ./.github/workflows/calling-reusable-workflow.yml  # Call reusable workflow from another repo
-    with:
-      language: 'python'  # Pass language input as Node.js
-      build-tool: 'pip'  # Customize the
+    production-deploy:
+      uses: ./.github/workflows/reusable.yml
+      with:
+        environment: 'production'
