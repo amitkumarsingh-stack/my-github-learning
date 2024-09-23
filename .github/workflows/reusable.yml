@@ -1,5 +1,5 @@
 # .github/workflows/resuable.yml
-name: Reusable Workflow Template
+name: Reusable Deployment Workflow
 
 on:
   workflow_call:
@@ -17,7 +17,8 @@ jobs:
 
       - name: Deploy to environment
         run: |
-          if [ ${{ inputs.environment }} = "production" ]; then
+          if [ "${{ inputs.environment }}" = "production" ]; then
             echo "Deploying to production server..."
           else
             echo "Deploying to ${{ inputs.environment }} environment..."
+          fi  # End the if block properly
