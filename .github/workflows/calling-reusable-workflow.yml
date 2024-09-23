@@ -1,13 +1,11 @@
 # This file is located within the same repository
-name: Calling Workflow
+name: calling-reusable-template
 
 on: workflow_dispatch
 
 jobs:
-  use-reusable-build:
-    uses: ./.github/workflows/reusable.yml  # Reference reusable workflow
+  call-reusable-ci:
+    uses: ./.github/workflows/reusable.yml  # Call reusable workflow from another repo
     with:
-      node-version: '14'  # Pass inputs to the reusable workflow
-      environment: 'production'
-    secrets:
-      ACCESS_KEY_ID: ${{ secrets.GITHUB_TOKEN }}  # Pass secrets to the reusable workflow
+      language: 'python'  # Pass language input as Node.js
+      build-tool: 'pip'  # Customize the

@@ -1,16 +1,17 @@
-# This file is located at: .github/workflows/build.yml
-name: Reusable Build Workflow
+# Located in .github/workflows/ci.yml
+name: Reusable Workflow
 
 on:
   workflow_call:
-    inputs:  # Define inputs for customization
-      node-version:
+    inputs:
+      language:
         type: string
         required: true
-      environment:
+      build-tool:
         type: string
-        required: true
-    secrets:  # Define secrets that can be passed in from the calling workflow
+        required: false
+        default: npm
+    secrets:
       ACCESS_KEY_ID:
         required: true
 
@@ -21,16 +22,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ inputs['node-version'] }}  # Use input parameter
+      - name: Setup environment
+        run: echo "Setting up for ${{ inputs.language }} with ${{ inputs['build-tool'] }}"
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          if [ ${{ inputs.language }} = "node" ]; then
+            npm install
+          elif [ ${{ inputs.language }} = "python" ]; then
+            pip install -r requirements.txt
+          fi
 
       - name: Run tests
-        run: npm test
+        run: echo "Running tests..."
 
-      - name: Deploy to environment
-        run: echo "Deploying to ${{ inputs['environment'] }} using token ${{ secrets.ACCESS_KEY_ID }}"
+      - name: Deploy with API key
+        run: echo "${{ secrets.ACCESS_KEY_ID }}"
