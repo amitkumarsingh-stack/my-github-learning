@@ -2,10 +2,20 @@ name: Commonly Used Operator  # Name of the workflow, displayed in the GitHub Ac
 
 on: workflow_dispatch  # This workflow is triggered manually via the GitHub UI
 
+# Logical AND (&&). In this example, the step will only execute if the branch is main and the actor (who triggered the workflow) is amit.
+# This operator returns true only if both expressions are true.
 jobs: 
-  example:
-    runs-on: ubuntu-latest
+  Logical_AND_Example:
+    runs-on: ubuntu-latest  # Specifies the runner that the job will use (in this case, the latest Ubuntu version)
     steps:
-      - name: Run if both the consitions are true
-        if: ${{ github.ref == 'refs/heads/main' }}
-        run: echo "Both the branch is main and actor is Amit"
+      - name: Run if both conditions are true  # Step name indicating the action to be performed
+        if: ${{ github.ref == 'refs/heads/main' && github.actor == 'amit' }}  # Condition: Executes only if the branch is 'main' and the actor is 'amit'
+        run: echo "Both the branch is main and actor is Amit"  # Command to be run when the condition is met
+
+# Logical OR (||). The step will execute if the branch is main or the actor is amit.
+  Logical_OR:
+    runs-on: ubuntu-latest  # Specifies the runner that the job will use (in this case, the latest Ubuntu version)
+    steps:
+      - name: Run if either condition is true  # Step name indicating the action to be performed
+        if: ${{ github.ref == 'refs/heads/main' || github.actor == 'amit' }}  # Condition: The step will execute if the branch is 'main' or the actor is 'amit'
+        run: echo "The branch is main or the actor is Amit" # # Command to be run when the condition is met
