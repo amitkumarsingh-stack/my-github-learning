@@ -27,4 +27,4 @@ jobs:
           with:
             name: build-artifacts
         - name: Use Build Artifact
-          run: cat build-output.txt
+          run: cat output.txt
