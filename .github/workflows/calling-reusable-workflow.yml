@@ -5,7 +5,7 @@ on: workflow_dispatch
 
 jobs:
   call-reusable-ci:
-    uses: ./.github/workflows/reusable.yml  # Call reusable workflow from another repo
+    uses: ./.github/workflows/calling-reusable-workflow.yml  # Call reusable workflow from another repo
     with:
       language: 'python'  # Pass language input as Node.js
       build-tool: 'pip'  # Customize the
