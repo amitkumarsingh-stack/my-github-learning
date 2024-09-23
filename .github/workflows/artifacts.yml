@@ -1,6 +1,8 @@
 name: Uploading Build Artifacts  # Name of the workflow, displayed in the GitHub Actions UI
 
 on: workflow_dispatch
+
+# Upload artifacts
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,3 +17,14 @@ jobs:
         with:
           name: build-artifacts     # Name the artifact as 'build-artifacts'
           path: build/              # Upload everything inside the 'build' directory
+
+# Use artifacts in job
+  deploy:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Download Build Artifact
+          uses: actions/download-artifact@v4
+          with:
+            name: build-artifacts
+        - name: Use Build Artifact
+        run: cat build-output.txt
