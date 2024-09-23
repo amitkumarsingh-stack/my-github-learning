@@ -10,3 +10,6 @@ jobs:
         steps:
             - name: Print Deployment Environment
               run: echo "${{ env.DEPLOY_ENV }}"
+
+            - name: Print Database URL
+              run: echo "Database URL: $DATABASE_URL"
