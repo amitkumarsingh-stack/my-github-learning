@@ -31,5 +31,13 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Always run cleanup
-              if: ${{ always() }}   # # The 'Always run cleanup' step will execute regardless of the outcome of the previous step
+              if: ${{ always() }}  # The 'Always run cleanup' step will execute regardless of the outcome of the previous step
               run: echo "Cleaning up resources..."
+
+# cancelled(). This will send a notification if the workflow is canceled at any point during execution.
+    Cancel_notification:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Cancel notification
+              if: ${{ cancelled() }}
+              run: echo "Workflow was cancelled. Notifying team..."
