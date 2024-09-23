@@ -1,0 +1,19 @@
+name: Uploading Build Artifacts  # Name of the workflow, displayed in the GitHub Actions UI
+
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.set-version.outputs.version }} # Define a 'version' output for this job
+    steps:
+      - name: Set Version Output
+        id: set-version
+        run: echo "version=1.0.0" >> $GITHUB_OUTPUT  # Set 'version' as the job output
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Use Build Version
+        run: echo "Deploying version ${{ needs.build.outputs.version }}" # Access the output of the 'build' job
