@@ -19,3 +19,11 @@ jobs:
       - name: Run if either condition is true  # Step name indicating the action to be performed
         if: ${{ github.ref == 'refs/heads/main' || github.actor == 'amit' }}  # Condition: The step will execute if the branch is 'main' or the actor is 'amit'
         run: echo "The branch is main or the actor is Amit" # # Command to be run when the condition is met
+
+# Logical NOT (!). The step will only execute if the branch is not main.
+  Logical_Not:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run if not on main branch
+        if: ${{ ! (github.ref == 'ref/heads/main') }}   # # Condition: The step will only execute if the branch is not 'main'
+        run: echo "This step runs if the branch is not main"
