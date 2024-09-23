@@ -4,14 +4,21 @@ on: workflow_dispatch  # This workflow is triggered manually via the GitHub UI
 
 # success(). Returns true if the current job or previous steps have succeeded.
 jobs: 
-    Build:
+    Build:  # This is the first job in the workflow, named "Build"
+        runs-on: ubuntu-latest  # The job will run on the latest Ubuntu virtual machine
+        steps:
+            - name: Build  # Name of the step that builds the project
+              run: echo "Building..."  # This step just echoes a build message
+              
+    Deploy:  # Second job named "Deploy"
+        runs-on: ubuntu-latest  # The job will also run on an Ubuntu virtual machine
+        steps:
+            - name: Deploy  # Name of the deployment step
+              if: ${{ success() }}  # Step runs only if the "Build" job or previous steps succeeded
+              run: echo "Last job was success"  # This step echoes a success message if the previous steps passed
+    Notify_if_failed:
         runs-on: ubuntu-latest
         steps:
-            - name: Build
-              run: echo "Building..."
-    Deply:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Deploy
-              if: ${{ success() }}
-              run: echo "Last job was success"
+            - name: Notify on failure
+              if: ${{ failure() }}  # Step will only run if the "Deploy" or any other step fails
+              run: echo "Build failed. Sending notification..."
