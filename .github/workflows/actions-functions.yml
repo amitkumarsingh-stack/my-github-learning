@@ -39,5 +39,5 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Cancel notification
-              if: ${{ cancelled() }}
+              if: ${{ cancelled() }}    # This will send a notification if the workflow is canceled at any point during execution.
               run: echo "Workflow was cancelled. Notifying team..."
