@@ -1,5 +1,5 @@
 # This file is located within the same repository
-name: CI Workflow
+name: Calling Workflow
 
 on: workflow_dispatch
 
