@@ -1,0 +1,12 @@
+name: Global Environment Variables  # You can set environment variables for all jobs in the workflow using the env key at the workflow level.
+
+on: workflow_dispatch
+env:
+    DEPLOY_ENV: production
+    DATABASE_URL: postgres://user:pass@localhost/db
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print Deployment Environment
+              run: echo "${{ env.DEPLOY_ENV }}"
