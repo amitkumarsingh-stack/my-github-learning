@@ -1,0 +1,11 @@
+name: Commonly Used Operator  # Name of the workflow, displayed in the GitHub Actions UI
+
+on: workflow_dispatch  # This workflow is triggered manually via the GitHub UI
+
+jobs: 
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run if both the consitions are true
+        if: ${{ github.ref == 'refs/heads/main' && github.actor == 'amit' }}
+        run: echo "Both the branch is main and actor is Amit"
