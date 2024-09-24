@@ -1,0 +1,25 @@
+name: "Terraform Plan in Container"
+
+on: workflow_dispatch
+
+jobs:
+  terraform:
+    container:
+      image: hashicorp/terraform:1.5.0  # Terraform Docker image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        run: terraform --version
+
+      - name: Initialize Terraform
+        run: terraform init
+
+      - name: Validate Terraform files
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan
